@@ -44,4 +44,7 @@ And finally, copy the images:
 docker cp backup/images/. mw-app:/var/www/html/images
 ```
 
+## Setting up a domain name
+
+If you want to run Wiki in production, this assumes you have set up a proper domain name. For MediaWiki to work with that, change `$wgServer` in `LocalSettings.php` to a proper value like `https://webchemwiki.biodata.ceitec.cz`.
 
