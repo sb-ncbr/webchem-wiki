@@ -35,7 +35,7 @@ podman compose up -d
 Now, import the database contents (might need to wait a while until the mariadb initialises"
 
 ```bash
-podman exec -i --env-file .env mw-db sh -c 'exec mariadb -u"$DB_USER" -p"$DB_PASSWORD" "$DB_NAME"' < backup/db-2025-07-21.sql
+podman exec -i --env-file .env mw-db sh -c 'exec mariadb -u"$DB_USER" -p"$DB_PASSWORD" "$DB_NAME"' < backup/full.sql
 ```
 
 And finally, copy the images:
