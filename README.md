@@ -29,19 +29,19 @@ Then adjust `SERVER` and `PORT` variables according to your needs.
 Next, fire up the containers:
 
 ```bash
-podman compose up -d
+docker compose up -d
 ```
 
 Now, import the database contents (might need to wait a while until the mariadb initialises"
 
 ```bash
-podman exec -i --env-file .env mw-db sh -c 'exec mariadb -u"$DB_USER" -p"$DB_PASSWORD" "$DB_NAME"' < backup/full.sql
+docker exec -i --env-file .env mw-db sh -c 'exec mariadb -u"$DB_USER" -p"$DB_PASSWORD" "$DB_NAME"' < backup/full.sql
 ```
 
 And finally, copy the images:
 
 ```bash
-podman cp backup/images/. mw-app:/var/www/html/images/
+docker cp backup/images/. mw-app:/var/www/html/images
 ```
 
 
