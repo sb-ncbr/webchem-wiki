@@ -26,7 +26,7 @@ services:
         PORT: ${PORT}
     volumes:
       - images:/var/www/html/images
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php:Z
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php:ro
     ports:
       - '${PORT}:80'
 
