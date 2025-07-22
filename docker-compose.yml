@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: mw-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      TZ: Europe/Prague
+    volumes:
+      - db-data:/var/lib/mysql
+
+  mediawiki:
+    image: mediawiki:1.44
+    container_name: mw-app
+    restart: unless-stopped
+    depends_on: [db]
+    environment:
+        MEDIAWIKI_DB_TYPE: ${DB_TYPE}
+        MEDIAWIKI_DB_NAME: ${DB_NAME}
+        MEDIAWIKI_DB_USER: ${DB_USER}
+        MEDIAWIKI_DB_PASSWORD: ${DB_PASSWORD}
+        SERVER: ${SERVER}
+        PORT: ${PORT}
+    volumes:
+      - images:/var/www/html/images
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php:Z
+    ports:
+      - '${PORT}:80'
+
+volumes:
+  db-data:
+  images:
